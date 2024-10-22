@@ -1,28 +1,34 @@
 {% extends "base.html" %}
 
 {% block main_content %}
-<section id="detailsPage">
-    <div class="wrapper">
-        <div class="albumCover">
-            <!-- Album Image -->
-            <img src="{{ object.image_url }}" alt="{{ object.description }}"/>
-        </div>
-
-        <div class="albumInfo">
-            <div class="albumText">
-                <!-- Album Info -->
-                <h1>Name: {{ object.album_name }}</h1>
-                <h3>Artist: {{ object.artist }}</h3>
-                <h4>Genre: {{ object.genre }}</h4>
-                <h4>Price: {{ object.price }}</h4>
-                <p>Description: {{ object.description }}</p>
+    <section id="detailsPage">
+        <div class="wrapper">
+            <div class="albumCover">
+                <!-- Album Image -->
+                <img src="{{ object.image_url }}" alt="{{ object.description }}"/>
             </div>
 
-            <div class="actionBtn">
-                <a href="{% url "album-edit" pk=object.pk %}" class="edit">Edit</a>
-                <a href="{% url "album-delete" pk=object.pk %}" class="remove">Delete</a>
+            <div class="albumInfo">
+                <div class="albumText">
+                    <!-- Album Info -->
+                    <h1>Name: {{ object.album_name }}</h1>
+                    <h3>Artist: {{ object.artist }}</h3>
+                    <h4>Genre: {{ object.genre }}</h4>
+                    <h4>Songs:
+                        {% for song in album.songs.all %}
+                            <a href="{% url "play-song" song.id %}">{{ song.song_name }}</a>
+                            {% if not forloop.last %} | {% endif %}
+                        {% endfor %}
+                    </h4>
+                    <h4>Price: {{ object.price }}</h4>
+                    <p>Description: {{ object.description }}</p>
+                </div>
+
+                <div class="actionBtn">
+                    <a href="{% url "album-edit" pk=object.pk %}" class="edit">Edit</a>
+                    <a href="{% url "album-delete" pk=object.pk %}" class="remove">Delete</a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 {% endblock %}

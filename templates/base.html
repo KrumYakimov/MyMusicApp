@@ -20,6 +20,7 @@
           <ul>
             {% if profile_exists %}
                 <li><a href="{% url 'album-create' %}">Create Album</a></li>
+                <li><a href="{% url "create-song" %}">Create Song</a></li>
                 <li><a href="#">Profile</a></li>
             {% endif %}
           </ul>

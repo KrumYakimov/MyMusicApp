@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<div>
+    <div class="player">
+        <div class="top">
+            <button class="small">
+                <div class="inner_button">
+                    <!-- Your button SVG here -->
+                </div>
+            </button>
+            <p class="indicator">PLAYING NOW</p>
+            <button class="small">
+                <div class="inner_button">
+                    <!-- Your button SVG here -->
+                </div>
+            </button>
+        </div>
+
+        <div class="center">
+            <!-- Album cover image -->
+            <img class="album" src="{{ song.album.image_url }}">
+        </div>
+
+        <div class="song_details">
+            <!-- Song details -->
+            <div style="font-size: 20px;">{{ song.song_name }}</div>
+            <div style="margin-top: 7px; font-size: 10px;">{{ song.song_name }}</div>
+        </div>
+
+        <div class="slider">
+            <!-- Your existing slider elements -->
+        </div>
+
+        <div class="controls">
+            <button class="big">
+                <div class="inner_button_big">
+                    <!-- Your back/previous button SVG here -->
+                </div>
+            </button>
+            <button class="big_play_pause" onclick="togglePlayPause()">
+                <div class="playpause playImg">
+                    <!-- Your play SVG here -->
+                </div>
+                <div style="display: none;" class="playpause pauseImg">
+                    <!-- Your pause SVG here -->
+                </div>
+            </button>
+            <button class="big">
+                <div class="inner_button_big">
+                    <!-- Your next/forward button SVG here -->
+                </div>
+            </button>
+        </div>
+
+        <!-- Hidden audio player -->
+        <audio id="audioPlayer">
+            <source id="audioSource" src="{% url 'serve-song' song.id %}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+</div>
+
+<script type="text/javascript">
+function togglePlayPause() {
+    let audioPlayer = document.getElementById('audioPlayer');
+    let pauseImg = document.querySelector('.pauseImg');
+    let playImg = document.querySelector('.playImg');
+
+    if (audioPlayer.paused || audioPlayer.ended) {
+        audioPlayer.play();
+        pauseImg.style.display = 'inline-block';
+        playImg.style.display = 'none';
+    } else {
+        audioPlayer.pause();
+        pauseImg.style.display = 'none';
+        playImg.style.display = 'inline-block';
+    }
+}
+</script>
+
+{% endblock %}

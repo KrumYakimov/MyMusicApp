@@ -22,4 +22,5 @@ urlpatterns = [
     path("", include("MyMusicApp.web.urls")),
     path("album/", include("MyMusicApp.albums.urls")),
     path("profile/", include("MyMusicApp.profiles.urls")),
+    path("song/", include("MyMusicApp.songs.urls"))
 ]

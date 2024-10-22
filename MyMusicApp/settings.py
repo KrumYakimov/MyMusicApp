@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'MyMusicApp.web',
     'MyMusicApp.profiles',
-    "MyMusicApp.albums"
+    "MyMusicApp.albums",
+    "MyMusicApp.songs.apps.SongsConfig"
 ]
 
 MIDDLEWARE = [

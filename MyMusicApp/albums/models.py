@@ -53,3 +53,6 @@ class Album(models.Model):
         "profiles.Profile",
         on_delete=models.CASCADE,
     )
+
+    def __str__(self):
+        return self.album_name
